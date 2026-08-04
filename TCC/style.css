@@ -1,0 +1,181 @@
+body{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.container-grid{
+    width: 85%;    
+    float: left;
+    margin-left: 7.5%;
+    text-align: center;
+    padding-top: 7px;
+    padding-bottom: 2px;
+}
+
+
+.grids{
+    margin-top: 32px;
+}
+
+.container-grid .item{
+    height: 30px;
+    min-width: 10%;
+    float: left;
+    margin-left: 8px;
+    text-align: center;
+    padding-top: 7px;
+    padding-bottom: 2px;
+    border: 2px solid black;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+#caracteristicas .item{
+    height: 50px !important;
+    font-weight: bold;
+}
+
+
+
+.titulo{
+    text-align: center;
+    width: 40%;
+    height: 100px;
+    padding-bottom: 20px;
+    border: 2px solid black;
+    border-radius: 15px;
+    left: 30%;
+    position: relative;
+}
+
+.pontuacao{
+    display: flex;
+    width: 100%;
+}
+
+.pontuacao div{
+    width: 50%;
+    align-content: space-around;
+}
+
+#pesquisa{
+    padding-left: 5px;
+    width: calc(40% - 5px);
+    top: 20px;
+    bottom: 20px;
+    left: 30%;
+    position: relative;
+    border: 2px solid black;
+    height: 20px;
+}
+
+.info{
+    text-align: center;
+    padding-top: 5%;
+    width: 45%;
+    left: 40%;
+    position: relative;
+    display: flex;
+}
+
+#bt-abrir-jogar{
+    display: flex;
+    padding-right: 25%;
+    cursor: pointer;
+}
+
+#modal_comojogar{
+    display: none;
+    height: 300px;
+    width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #999;
+    position: absolute;
+    z-index: 999;
+    left: calc(50% - 150px);
+    top: 200px;
+    font-size: 20px;
+    color: #444;
+}
+
+#modal_comojogar .bt-nav{
+    margin-left: 0px;
+    width: 90%;
+}
+
+#bt-fechar-jogar{
+    border: 1px solid #777;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    font-size: 15px;
+    text-align: center;
+    position: relative;
+    left: 270px;
+}
+
+#bt-abrir-sobre{
+    display: flex;
+    padding-right: 25%;
+    cursor: pointer;
+}
+
+#modal_sobrenos{
+    display: none;
+    height: 300px;
+    width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #999;
+    position: absolute;
+    z-index: 999;
+    left: calc(50% - 150px);
+    top: 200px;
+    font-size: 20px;
+    color: #444;
+}
+
+#modal_sobrenos .bt-nav{
+    margin-left: 0px;
+    width: 90%;
+}
+
+#bt-fechar-sobre{
+    border: 1px solid #777;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    font-size: 15px;
+    text-align: center;
+    position: relative;
+    left: 270px;
+}
+
+.titulo-2{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#previa-nomes{
+ 
+    display:none;
+    width: calc(40% - 5px);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #999;
+    position: absolute;
+    z-index: 999;
+    left: 30%;
+    top: 175px;
+    font-size: 20px;
+    color: #444;
+}
