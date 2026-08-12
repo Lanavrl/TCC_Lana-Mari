@@ -6,25 +6,22 @@ pesquisa = document.getElementById("pesquisa");
 previanomes = document.getElementById("previa-nomes");
 
 function insertGrid(so){
-    so = {nome: "Linux", lancamento:2000, nucleo:"monolitico"};
-    
+    //so = {nome: "Linux", lancamento:2000, nucleo:"monolitico"};
+    console.log( so );
+
     line = '   <div class="container-grid" id="informacoes">';
-    line +='    <div class="item">'+so.nome+'</div>';
-    line +='    <div class="item">'+so.lancamento+'</div>';
-    line +='    <div class="item">'+so.nucleo+'</div>';
-    line +='    <div class="item">X</div>';
-    line +='   <div class="item">X</div>';
-    line +='    <div class="item">X</div>';
-    line +='    <div class="item">X</div>';
-    line +='   <div class="item">X</div>';
-    line +='   <div class="item">X</div></div>';
+    for(var i = 0; i< 9 ; i++ )
+        line +='<div class="item">'+so[i]+'</div>';
+    
      grid.innerHTML = grid.innerHTML + line;
 }
 
 pesquisa.addEventListener("keyup", buscaPrevia);
 
-function obterSo(dados){
-    
+/* Pega todos os dados do SO especificos */
+function obterSo(id){
+
+    dados = {'id': id};
     fetch("backend/pesquisa_so.php", {
         method: "POST",
         headers: {
@@ -34,7 +31,6 @@ function obterSo(dados){
     })
     .then( resposta => resposta.json() )
         
-        //resposta.json() ) 
     
     .then(dadosResposta => {
        
@@ -46,8 +42,25 @@ function obterSo(dados){
 
 }
 
-function buscaPrevia(dados){
+
+function soDoDia(){
+
+    //escolher um valor aleatorio
+    //copiar a função obterSo e chamar de obterSoDia
+    //passar o valor para obterSoDia( alea )
+    //remover o insertGrid em obterSoDia
+    //no lugar chamar a função salvarSoDia
+    //criar a função salvarSoDia que deve pegar os dados do array e salvar em uma variável global ou no localstorage (pesquisar);
+
+}
+/* Pega todos os SOs especificos */
+function buscaPrevia(){
     
+    soname = document.getElementById("pesquisa").value;
+    console.log( soname );
+
+    dados = {'soname': soname};
+
     fetch("backend/busca_previa.php", {
         method: "POST",
         headers: {
@@ -56,9 +69,7 @@ function buscaPrevia(dados){
         body: JSON.stringify(dados)
     })
     .then( resposta => resposta.json() )
-        
-        //resposta.json() ) 
-    
+
     .then(dadosResposta => {
        
         exibirPrevisSO(dadosResposta)
@@ -100,17 +111,29 @@ btAbrirSobre.addEventListener("click", abrirModal2);
 
 function exibirPrevisSO(so){
     previanomes.style.display = "block";
-
-    so = [{id:"1", nome: "Linux"}, {id:"1", nome: "Unbuntu"}];
+    previanomes.innerHTML = "";
+    //vem do banco de dados
+    //so = [{id:"1", nome: "Linux"}, {id:"2", nome: "Unbuntu"}];
+    
     line = "";
+    //loop para exibir no HTML todos os SOs buscados
     for( var i = 0; i < so.length; i++)
         line +='<div ref="'+so[i].id+'" class="so-previa">'+so[i].nome+'</div>';
  
      previanomes.innerHTML = previanomes.innerHTML + line;
      
-     //pegar os botoes por getElementByClassName 
-     //fazer um loop
-     //cadastrar a função de clique para cada item no loop
-     //a função de clique deve pegar o atributo ref do elemento e enviar para a função obterSo.
-     //depois deve colocar o previanomes como display none
+     elementos_previa = document.getElementsByClassName("so-previa");
+     
+    for( var i = 0; i < elementos_previa.length; i++){
+        elementos_previa[i].addEventListener("click", function(elem){
+            
+            var ref = elem.target.getAttribute("ref");
+            if(ref != ""){
+                obterSo( ref );
+            }
+            
+             previanomes.style.display = "none";
+            
+        });
+    }
 }

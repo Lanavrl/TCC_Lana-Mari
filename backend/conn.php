@@ -3,7 +3,7 @@
 $host = "localhost";
 $username = "root";
 $password = "root";
-$database = "teste";
+$database = "tcc_lanamari";
 
 $conn = new mysqli( $host, $username, $password, $database );
 
