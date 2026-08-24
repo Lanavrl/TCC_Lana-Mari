@@ -22,6 +22,7 @@ pesquisa.addEventListener("keyup", buscaPrevia);
 function obterSo(id){
 
     dados = {'id': id};
+
     fetch("backend/pesquisa_so.php", {
         method: "POST",
         headers: {
@@ -42,8 +43,45 @@ function obterSo(id){
 
 }
 
+function obterSoDia(id, callback){
+
+    dados = { id: id }; 
+
+    fetch('backend/pesquisa_so.php', { 
+        method: 'POST', 
+        headers: { 
+            'Content-Type': 'application/json' 
+        }, 
+        body: JSON.stringify(dados) 
+    }) 
+    .then(resposta => resposta.json()) 
+
+    .then(dadosResposta => { 
+        if (callback) {
+            callback(dadosResposta);
+        } else {
+            insertGrid(dadosResposta); 
+        }
+    })
+    .catch(erro => { 
+        console.log('Erro:', erro); 
+    }); 
+
+}
+
+function salvarSoDia(dadosSo) {
+    localStorage.setItem('soDoDia', JSON.stringify(dadosSo));
+    console.log(dadosSo);
+}
 
 function soDoDia(){
+
+        let idAleatorio = Math.random();
+        console.log(idAleatorio);
+
+        obterSoDia(idAleatorio, function(dadosResposta){
+            salvarSoDia(dadosResposta)
+        })
 
     //escolher um valor aleatorio
     //copiar a função obterSo e chamar de obterSoDia
@@ -53,6 +91,7 @@ function soDoDia(){
     //criar a função salvarSoDia que deve pegar os dados do array e salvar em uma variável global ou no localstorage (pesquisar);
 
 }
+
 /* Pega todos os SOs especificos */
 function buscaPrevia(){
     
@@ -130,10 +169,15 @@ function exibirPrevisSO(so){
             var ref = elem.target.getAttribute("ref");
             if(ref != ""){
                 obterSo( ref );
+                
             }
             
-             previanomes.style.display = "none";
+            previanomes.style.display = "none";
             
         });
     }
 }
+
+    const css = document.getElementByName("so-previa");
+
+    css.classList.add("so_previa");
