@@ -5,17 +5,31 @@ grid = document.getElementById("grids");
 pesquisa = document.getElementById("pesquisa");
 previanomes = document.getElementById("previa-nomes");
 
+
+window.addEventListener('DOMContentLoaded', () => {
+    soDoDia();
+});
+
 function insertGrid(so){
     //so = {nome: "Linux", lancamento:2000, nucleo:"monolitico"};
     console.log( so );
-
+    var sodia = JSON.parse(localStorage.getItem('soDoDia  '))
     line = '   <div class="container-grid" id="informacoes">';
-    for(var i = 0; i< 9 ; i++ )
-        line +='<div class="item">'+so[i]+'</div>';
-    
+    for(var i = 0; i< 9 ; i++ ){
+        if(sodia[i] == so[i]){
+
+        line +='<div class="item correct">'+so[i]+'</div>';
+    }else{
+        if (i == 1 || i == 8){
+        line +='<div class="item error"><i class="fa-solid fa-circle-up"></i>'+so[i]+'</div>';
+        }else{
+            line +='<div class="item error"><i class="fa-solid fa-circle-down"></i>'+so[i]+'</div>';
+        }
+        line +='<div class="item error">'+so[i]+'</div>';
+    }
      grid.innerHTML = grid.innerHTML + line;
 }
-
+}
 pesquisa.addEventListener("keyup", buscaPrevia);
 
 /* Pega todos os dados do SO especificos */
@@ -57,6 +71,7 @@ function obterSoDia(id, callback){
     .then(resposta => resposta.json()) 
 
     .then(dadosResposta => { 
+        console.log(dadosResposta)
         if (callback) {
             callback(dadosResposta);
         } else {
@@ -76,7 +91,8 @@ function salvarSoDia(dadosSo) {
 
 function soDoDia(){
 
-        let idAleatorio = Math.random();
+        const generate = seededRandom(100);
+        let idAleatorio = Math.floor(generate() * 42 + 1);
         console.log(idAleatorio);
 
         obterSoDia(idAleatorio, function(dadosResposta){
@@ -90,6 +106,15 @@ function soDoDia(){
     //no lugar chamar a função salvarSoDia
     //criar a função salvarSoDia que deve pegar os dados do array e salvar em uma variável global ou no localstorage (pesquisar);
 
+}
+
+function seededRandom(seed) {
+  return function() {
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  }
 }
 
 /* Pega todos os SOs especificos */
@@ -178,6 +203,6 @@ function exibirPrevisSO(so){
     }
 }
 
-    const css = document.getElementByName("so-previa");
+    //const css = document.getElementsByClassName("so-previa");
 
-    css.classList.add("so_previa");
+    //css.classList.add("so-previa");

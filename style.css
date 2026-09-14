@@ -187,3 +187,11 @@ body{
     background-color: #e7e5e5;
     cursor: pointer;
 }
+
+.correct{
+    background-color: green;
+}
+
+.error{
+    background-color: red;
+}
