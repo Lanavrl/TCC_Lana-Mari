@@ -1,7 +1,8 @@
 body{
     height: 100%;
-    width: 100%;
-    overflow: hidden;
+    width: 99%;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F7EEE9;
 }
 
 .container-grid{
@@ -13,15 +14,16 @@ body{
     padding-bottom: 2px;
 }
 
-
 .grids{
     margin-top: 32px;
 }
 
-
-
 .container-grid .item{
-    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    align-items: center;
     width: 10%;
     float: left;
     margin-left: 8px;
@@ -41,8 +43,6 @@ body{
     font-weight: bold;
 }
 
-
-
 .titulo{
     text-align: center;
     width: 40%;
@@ -60,7 +60,7 @@ body{
 }
 
 .pontuacao div{
-    width: 50%;
+    width: 100%;
     align-content: space-around;
 }
 
@@ -73,11 +73,13 @@ body{
     position: relative;
     border: 2px solid black;
     height: 20px;
+    background-color: #F7EEE9;
 }
 
 .info{
     text-align: center;
-    padding-top: 5%;
+    padding-top: 1%;
+    padding-bottom: 5%;
     width: 45%;
     left: 40%;
     position: relative;
@@ -94,7 +96,7 @@ body{
     display: none;
     height: 300px;
     width: 300px;
-    background-color: #fff;
+    background-color: #faf6f4;
     padding: 20px;
     border-radius: 10px;
     border: 1px solid #999;
@@ -122,6 +124,10 @@ body{
     left: 270px;
 }
 
+#bt-fechar-jogar:hover{
+    cursor: pointer;
+}
+
 #bt-abrir-sobre{
     display: flex;
     padding-right: 25%;
@@ -132,7 +138,7 @@ body{
     display: none;
     height: 300px;
     width: 300px;
-    background-color: #fff;
+    background-color: #faf6f4;
     padding: 20px;
     border-radius: 10px;
     border: 1px solid #999;
@@ -160,17 +166,20 @@ body{
     left: 270px;
 }
 
+#bt-fechar-sobre:hover{
+    cursor: pointer;
+}
+
 .titulo-2{
     text-align: center;
     font-weight: bold;
     font-size: 20px;
 }
 
-#previa-nomes{
- 
+#previa-nomes{ 
     display:none;
     width: calc(40% - 5px);
-    background-color: #fff;
+    background-color: #faf6f4;
     padding: 20px;
     border-radius: 10px;
     border: 1px solid #999;
@@ -180,18 +189,22 @@ body{
     top: 175px;
     font-size: 20px;
     color: #444;
+    
 }
 
-/*colocar o fundo diferente e o mouse com a mão ao passar por cima */
 .so-previa:hover{
-    background-color: #e7e5e5;
+    background-color: #f3e6df;
     cursor: pointer;
 }
 
 .correct{
     background-color: green;
+    font-weight: bold;
+    color: white;
 }
 
 .error{
     background-color: red;
+    font-weight: bold;
+    color: white;
 }

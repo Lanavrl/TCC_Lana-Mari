@@ -4,39 +4,36 @@ ComoJogar = document.getElementById("modal_comojogar");
 grid = document.getElementById("grids");
 pesquisa = document.getElementById("pesquisa");
 previanomes = document.getElementById("previa-nomes");
-
+tentativas = 0;
 
 window.addEventListener('DOMContentLoaded', () => {
     soDoDia();
 });
 
 function insertGrid(so){
-    //so = {nome: "Linux", lancamento:2000, nucleo:"monolitico"};
     console.log( so );
-    var sodia = JSON.parse(localStorage.getItem('soDoDia  '))
+    var sodia = JSON.parse(localStorage.getItem('soDoDia'))
     line = '   <div class="container-grid" id="informacoes">';
     for(var i = 0; i< 9 ; i++ ){
         if(sodia[i] == so[i]){
-
-        line +='<div class="item correct">'+so[i]+'</div>';
-    }else{
-        if (i == 1 || i == 8){
-        line +='<div class="item error"><i class="fa-solid fa-circle-up"></i>'+so[i]+'</div>';
-        }else{
-            line +='<div class="item error"><i class="fa-solid fa-circle-down"></i>'+so[i]+'</div>';
+            line +='<div class="item correct">'+so[i]+'</div>';
+        }else if (i == 1 || i == 8){
+            if (parseInt(sodia[i]) > parseInt(so[i])){
+                line +='<div class="item error"> <i class="fa-solid fa-circle-up"></i>'+so[i]+'</div>';
+            } else{
+                line +='<div class="item error"> <i class="fa-solid fa-circle-down"></i>'+so[i]+'</div>';
+            }
+        } else { 
+            line +='<div class="item error">'+so[i]+'</div>';
         }
-        line +='<div class="item error">'+so[i]+'</div>';
     }
-     grid.innerHTML = grid.innerHTML + line;
-}
-}
+    grid.innerHTML = grid.innerHTML + line;
+}   
+    
 pesquisa.addEventListener("keyup", buscaPrevia);
 
-/* Pega todos os dados do SO especificos */
 function obterSo(id){
-
     dados = {'id': id};
-
     fetch("backend/pesquisa_so.php", {
         method: "POST",
         headers: {
@@ -44,9 +41,7 @@ function obterSo(id){
         },
         body: JSON.stringify(dados)
     })
-    .then( resposta => resposta.json() )
-        
-    
+    .then( resposta => resposta.json() )    
     .then(dadosResposta => {
        
         insertGrid(dadosResposta)
@@ -54,13 +49,10 @@ function obterSo(id){
     }).catch(erro =>{
         console.log("Errro", erro);
     });
-
 }
 
 function obterSoDia(id, callback){
-
     dados = { id: id }; 
-
     fetch('backend/pesquisa_so.php', { 
         method: 'POST', 
         headers: { 
@@ -81,7 +73,6 @@ function obterSoDia(id, callback){
     .catch(erro => { 
         console.log('Erro:', erro); 
     }); 
-
 }
 
 function salvarSoDia(dadosSo) {
@@ -90,7 +81,6 @@ function salvarSoDia(dadosSo) {
 }
 
 function soDoDia(){
-
         const generate = seededRandom(100);
         let idAleatorio = Math.floor(generate() * 42 + 1);
         console.log(idAleatorio);
@@ -98,14 +88,6 @@ function soDoDia(){
         obterSoDia(idAleatorio, function(dadosResposta){
             salvarSoDia(dadosResposta)
         })
-
-    //escolher um valor aleatorio
-    //copiar a função obterSo e chamar de obterSoDia
-    //passar o valor para obterSoDia( alea )
-    //remover o insertGrid em obterSoDia
-    //no lugar chamar a função salvarSoDia
-    //criar a função salvarSoDia que deve pegar os dados do array e salvar em uma variável global ou no localstorage (pesquisar);
-
 }
 
 function seededRandom(seed) {
@@ -117,9 +99,7 @@ function seededRandom(seed) {
   }
 }
 
-/* Pega todos os SOs especificos */
-function buscaPrevia(){
-    
+function buscaPrevia(){   
     soname = document.getElementById("pesquisa").value;
     console.log( soname );
 
@@ -134,17 +114,15 @@ function buscaPrevia(){
     })
     .then( resposta => resposta.json() )
 
-    .then(dadosResposta => {
-       
+    .then(dadosResposta => {       
         exibirPrevisSO(dadosResposta)
-
-    }).catch(erro =>{
+    })
+    
+    .catch(erro =>{
         console.log("Errro", erro);
     });
-
 }
 
-/**/
 
 function fecharModal(){
     ComoJogar.style.display = "none";
@@ -174,13 +152,12 @@ btAbrirSobre.addEventListener("click", abrirModal2);
 
 
 function exibirPrevisSO(so){
+
     previanomes.style.display = "block";
     previanomes.innerHTML = "";
-    //vem do banco de dados
-    //so = [{id:"1", nome: "Linux"}, {id:"2", nome: "Unbuntu"}];
     
     line = "";
-    //loop para exibir no HTML todos os SOs buscados
+
     for( var i = 0; i < so.length; i++)
         line +='<div ref="'+so[i].id+'" class="so-previa">'+so[i].nome+'</div>';
  
@@ -190,19 +167,18 @@ function exibirPrevisSO(so){
      
     for( var i = 0; i < elementos_previa.length; i++){
         elementos_previa[i].addEventListener("click", function(elem){
-            
+            atualizaTentativa();
             var ref = elem.target.getAttribute("ref");
             if(ref != ""){
-                obterSo( ref );
-                
-            }
-            
-            previanomes.style.display = "none";
-            
+                obterSo( ref );                
+            }            
+            previanomes.style.display = "none";            
         });
     }
 }
 
-    //const css = document.getElementsByClassName("so-previa");
-
-    //css.classList.add("so-previa");
+function atualizaTentativa(){
+    tentativas++;
+    tentativa = document.getElementById("pont_atual");
+    tentativa.innerHTML = tentativas;
+}
