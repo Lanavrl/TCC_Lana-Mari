@@ -94,16 +94,16 @@ body{
 
 #modal_comojogar{
     display: none;
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 600px;
     background-color: #faf6f4;
     padding: 20px;
     border-radius: 10px;
     border: 1px solid #999;
     position: absolute;
     z-index: 999;
-    left: calc(50% - 150px);
-    top: 200px;
+    left: calc(50% - 300px);
+    top: 150px;
     font-size: 20px;
     color: #444;
 }
@@ -121,7 +121,7 @@ body{
     font-size: 15px;
     text-align: center;
     position: relative;
-    left: 270px;
+    left: 570px;
 }
 
 #bt-fechar-jogar:hover{
@@ -134,23 +134,23 @@ body{
     cursor: pointer;
 }
 
-#modal_sobrenos{
+#modal_sobre{
     display: none;
     height: 300px;
-    width: 300px;
+    width: 600px;
     background-color: #faf6f4;
     padding: 20px;
     border-radius: 10px;
     border: 1px solid #999;
     position: absolute;
     z-index: 999;
-    left: calc(50% - 150px);
+    left: calc(50% - 300px);
     top: 200px;
     font-size: 20px;
     color: #444;
 }
 
-#modal_sobrenos .bt-nav{
+#modal_sobre .bt-nav{
     margin-left: 0px;
     width: 90%;
 }
@@ -163,7 +163,7 @@ body{
     font-size: 15px;
     text-align: center;
     position: relative;
-    left: 270px;
+    left: 570px;
 }
 
 #bt-fechar-sobre:hover{
@@ -207,4 +207,103 @@ body{
     background-color: red;
     font-weight: bold;
     color: white;
+}
+
+#vitoria{
+    display: none;
+    height: 500px;
+    width: 500px;
+    background-color: #faf6f4;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #050505;
+    position: absolute;
+    z-index: 999;
+    left: calc(50% - 273px);
+    top: 75px;
+    font-size: 20px;
+    align-items: center;
+}
+
+#vitoria h1{
+    margin-left: calc(50% - 55px);
+}
+
+#voltar{
+    font-size: larger;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    align-items: center;
+    width: 50%;
+    float: left;
+    margin-left: 25%;
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 7px;
+    padding-bottom: 2px;
+    border: 2px solid black;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    background-color:  #faf6f4;
+}
+
+#voltar:hover{
+    cursor: pointer;
+    background-color: #f3e6df;
+}
+
+.acertou{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    float: left;
+    font-size: 25px;
+}
+
+.acertou2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    float: left;
+    color: #444;
+}
+
+.tentativas{
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    float: left;
+    margin-top: 15%;
+}
+
+#vitoria span{
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    float: left;
+    margin-bottom: 20%;
+}
+
+.regras{
+    font-size: 20px;
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+}
+
+.sobre{
+    font-size: 20px;
+    width: 100%;
+    float: left;
+    margin-top: 20px;
 }

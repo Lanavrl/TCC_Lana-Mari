@@ -1,6 +1,7 @@
 btFecharJogar = document.getElementById("bt-fechar-jogar");
 btAbrirJogar = document.getElementById("bt-abrir-jogar");
 ComoJogar = document.getElementById("modal_comojogar");
+Vitoria = document.getElementById("vitoria")
 grid = document.getElementById("grids");
 pesquisa = document.getElementById("pesquisa");
 previanomes = document.getElementById("previa-nomes");
@@ -11,12 +12,15 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function insertGrid(so){
+    var contador = 0
     console.log( so );
     var sodia = JSON.parse(localStorage.getItem('soDoDia'))
     line = '   <div class="container-grid" id="informacoes">';
     for(var i = 0; i< 9 ; i++ ){
         if(sodia[i] == so[i]){
+            contador++
             line +='<div class="item correct">'+so[i]+'</div>';
+
         }else if (i == 1 || i == 8){
             if (parseInt(sodia[i]) > parseInt(so[i])){
                 line +='<div class="item error"> <i class="fa-solid fa-circle-up"></i>'+so[i]+'</div>';
@@ -28,6 +32,8 @@ function insertGrid(so){
         }
     }
     grid.innerHTML = grid.innerHTML + line;
+    if (contador == 9)
+        Vitoria.style.display = "block";
 }   
     
 pesquisa.addEventListener("keyup", buscaPrevia);
@@ -103,10 +109,16 @@ function buscaPrevia(){
     soname = document.getElementById("pesquisa").value;
     console.log( soname );
 
+    if(soname == ""){
+        previanomes.style.display = "none"; 
+        return
+    }
+
     dados = {'soname': soname};
 
     fetch("backend/busca_previa.php", {
         method: "POST",
+
         headers: {
             'Content-Type': 'application/json'
         },
@@ -137,14 +149,14 @@ btAbrirJogar.addEventListener("click", abrirModal);
 
 btFecharSobre = document.getElementById("bt-fechar-sobre");
 btAbrirSobre = document.getElementById("bt-abrir-sobre");
-SobreNos = document.getElementById("modal_sobrenos");
+Sobre = document.getElementById("modal_sobre");
 
 function fecharModal2(){
-    SobreNos.style.display = "none";
+    Sobre.style.display = "none";
 }
 
 function abrirModal2(){
-    SobreNos.style.display = "block";
+    Sobre.style.display = "block";
 }
 
 btFecharSobre.addEventListener("click", fecharModal2);
@@ -155,7 +167,6 @@ function exibirPrevisSO(so){
 
     previanomes.style.display = "block";
     previanomes.innerHTML = "";
-    
     line = "";
 
     for( var i = 0; i < so.length; i++)
@@ -167,6 +178,7 @@ function exibirPrevisSO(so){
      
     for( var i = 0; i < elementos_previa.length; i++){
         elementos_previa[i].addEventListener("click", function(elem){
+            document.getElementById("pesquisa").value = ""
             atualizaTentativa();
             var ref = elem.target.getAttribute("ref");
             if(ref != ""){
@@ -177,8 +189,11 @@ function exibirPrevisSO(so){
     }
 }
 
+
 function atualizaTentativa(){
     tentativas++;
     tentativa = document.getElementById("pont_atual");
+    tentativaf = document.getElementById("pont_final");
     tentativa.innerHTML = tentativas;
+    tentativaf.innerHTML = tentativas;
 }

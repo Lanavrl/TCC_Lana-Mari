@@ -3,22 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DLE</title>
+    <title>GuessOS</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
 </head>
 <body>
+    <div id="vitoria">
+        <h1>Vitória</h1>
+        <div class="acertou">Você acertou o sistema operacional do dia!</div>
+        <div  class="acertou2">Retorne amanhã para um novo jogo</div>
+        <div class="tentativas">Número de tentativas: </div>
+        <div><span id="pont_final"> 0 </span></div>
+        <button id="voltar" type="button" onclick="window.location.reload()">Voltar</button>
+    </div>
     <div id="modal_comojogar">
         <div id="bt-fechar-jogar">x</div>
         <div class="titulo-2">Como jogar</div>
+        <div class="regras">Um sistema operacional é selecionado aleatóriamente.<br>
+            É objetivo do jogador acertar este sistema, utilizando as informações dadas à cada chute.<br>
+            <br>
+            As características em comum aparecerão em verde.<br>
+            As características com nada em comum aparecerão em vermelho.<br>
+            Se uma característica incorreta for um valor numérico, uma seta aparecerá ao lado apontando para cima ou para baixo.<br>
+            A palavra correta terá todas as características em comum, terminando o jogo.<br>
+            <br>
+            Um novo sistema operacional será selecionado no dia seguinte.
+        </div>
     </div>
-    <div id="modal_sobrenos">
+    <div id="modal_sobre">
         <div id="bt-fechar-sobre">x</div>
-        <div class="titulo-2">Sobre nós</div>
+        <div class="titulo-2">Sobre</div>
+        <div class="sobre">GuessOS é um rápido jogo virtual desenvolvido, como Trabalho de Conclusão de Curso,
+             por Lana Vasconcelos e Mariana Novaes, estudantes de informática do Instituto Federal da Bahia.<br><br>
+            O jogo tem como objetivo promover o ensino de informática, atualizando diáriamente para manter uma rotina integrada ao estudo,
+            motivando os discentes a testar seus conhecimentos e realizar revisões com frequência.
+        </div>
     </div>
 
     <div class="titulo">
-        <h1 id="titulo">Título</h1>
+        <h1 id="titulo">GuessOS</h1>
         <div class="pontuacao">
             <div>Tentativas:  <span id="pont_atual"> 0 </span></div>
         </div>
@@ -45,7 +68,9 @@
     </div>
     <nav class="info">
         <div id="bt-abrir-jogar">? Como jogar</div>
-        <div id="bt-abrir-sobre">@ Sobre nós</div>
+        <div>
+        </div>
+        <div id="bt-abrir-sobre">@ Sobre</div>
     </nav>
     <script src="script.js"></script>
 </body>
